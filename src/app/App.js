@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import Tab from '../components/Tab';
+import AppContext from "../app/AppContext";
+
+import Tab from "../components/Tab";
+import Button from "../components/Button";
+
+const appDefaults = {
+  tabs: [],
+  activeTabIndex: 0
+};
 
 function App() {
+  const [state, setState] = useState(appDefaults);
+
   return (
     <div className="App">
-      <Tab />
+      <AppContext.Provider value={{ state, setState }}>
+        <Tab />
+        <Button />
+      </AppContext.Provider>
     </div>
   );
 }
