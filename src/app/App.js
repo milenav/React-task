@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import AppContext from '../app/AppContext';
+import AppContext from './AppContext';
 
 import Tab from '../components/Tab';
 import Button from '../components/Button';
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <AppContext.Provider value={{ state, setState }}>
         <Tab />
-        <Form />
+        
         <Button />
       </AppContext.Provider>
     </div>

@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+import AppContext from '../app/AppContext';
 
 const useStyles = makeStyles({
   root: {
@@ -12,36 +15,38 @@ const useStyles = makeStyles({
 
 export const TAB_TYPE = {
   one: {
-    id: 'section-one',
-    label: 'Form 1'
+    id: "section-1",
+    label: "Form 1"
   },
   two: {
-    id: 'section-two',
-    label: 'Form 2'
+    id: "section-2",
+    label: "Form 2"
   },
   three: {
-    id: 'section-three',
-    label: 'Form 3'
-  },
+    id: "section-3",
+    label: "Form 3"
+  }
 };
 
-function Tabs() {
-  const appContext = useContext(appContext);
-  
+function AppTabs() {
+  // Use app context
+  const appContext = useContext(AppContext);
+
+  // GET DATA FROM CONTEXT (CONTEXT STATE)
   const { state, setState } = appContext;
   const { activeTabIndex, tabs } = state;
 
   const classes = useStyles();
 
-  const handleChange = (event, activeTabIndex) => {
+  const handleChange = (e, activeTabIndex) => {
     console.log(tabs[activeTabIndex]);
 
-    setState((prevState) => {
+    setState(prevState => {
       return {
         ...prevState,
         activeTabIndex
       };
-    })
+    });
   };
 
   return (
@@ -54,18 +59,14 @@ function Tabs() {
         variant="scrollable"
         scrollButtons="auto"
       >
-        {
-          tabs.map((tab) => {
-            const { id, type } = tab;
+        {tabs.map(tab => {
+          const { id, type } = tab;
 
-            return (
-              <Tab key={id} label={type} />
-            );
-          })
-        }
+          return <Tab key={id} label={type} />;
+        })}
       </Tabs>
     </Paper>
   );
 }
 
-export default Tabs;
+export default AppTabs;
