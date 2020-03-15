@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import AppContext from './AppContext';
+import AppContext from "./AppContext";
 
-import Tab from '../components/Tab';
-import Button from '../components/Button';
-import View from '../components/View';
+import Tab from "../components/Tab";
+import Button from "../components/Button";
+import View from "../components/View";
 
 const appDefaults = {
   tabs: [],

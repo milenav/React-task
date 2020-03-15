@@ -9,7 +9,8 @@ import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: "100%"
   }
 });
 
@@ -56,11 +57,11 @@ function AppTabs() {
         scrollButtons="auto"
       >
         {
-          tabs.map(tab => {
-            const { id, type } = tab;
+        tabs.map(tab => {
+          const { id, type } = tab;
 
-            return <Tab key={id} label={type} />;
-          })
+          return <Tab key={id} label={type} />;
+        })
         }
       </Tabs>
     </Paper>

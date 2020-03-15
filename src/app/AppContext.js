@@ -1,12 +1,12 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
 const appContextDefault = {
-    state: {
-        tabs: [],
-        activeTabIndex: 0
-    },
-    setState: () => {}
-}
+  state: {
+    tabs: [],
+    activeTabIndex: 0
+  },
+  setState: () => {}
+};
 
 const AppContext = createContext(appContextDefault);
 
