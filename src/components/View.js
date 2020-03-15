@@ -2,25 +2,29 @@ import React, { Fragment, useContext } from 'react';
 
 import AppContext from '../app/AppContext';
 import Form from './Form';
-import App from '../app/App';
+
+import Container from '@material-ui/core/Container';
+import { Grid } from '@material-ui/core';
 
 function View() {
     const appContext = useContext(AppContext);
     const { tabs, activeTabIndex } = appContext.state;
 
     return (
-<section>
+<Container maxWidth="sm">
+<Grid container justify="center">
     {
         tabs && tabs.length > 0 ? (
             <Fragment>
-                <h2>Tab: { activeTabIndex + 1}</h2>
+                <h4>TAB: { activeTabIndex + 1}</h4>
                 <Form />
             </Fragment>
         ) : (
-            <h2>Use the buttons below to open a new tab</h2>
+            <h4>Use the buttons below to open a new tab</h4>
         )
     }
-</section>
+    </Grid>
+</Container>
     );
 }
 

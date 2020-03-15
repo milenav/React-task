@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
 import { TAB_TYPE } from './Tab';
 
-import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -17,12 +16,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Form() {
-  const appContext = useContext(appContext);
+  const appContext = useContext(AppContext);
   const { setState, state } = appContext;
 
   const { activeTabIndex, tabs } = state;
   const activeTab = tabs[activeTabIndex];
-  const { firstName, lastName } = activeTab.form;
+  const { firstName, lastName, email } = activeTab.form;
 
   const classes = useStyles();
 
@@ -44,21 +43,38 @@ function Form() {
   }
 
   return (
-    <Container maxWidth="sm">
+    
         <form className={classes.root} noValidate autoComplete="off">
+          {
+            activeTab.type === TAB_TYPE.one.id &&
+               <TextField id="standard-full-width"
+               name="email"
+               label="Email"
+               placeholder="Email"
+               value={email || ''}
+               onChange={handleFormInputChange}
+               fullWidth
+                />
+          }
           <TextField id="standard-full-width"
-          label="Label"
-          placeholder="Placeholder"
-          fullWidth
-           />
-
-<TextField id="standard-full-width"
-          label="Label"
-          placeholder="Placeholder"
-          fullWidth
-           />
+               name="firstName"
+               label="First Name"
+               placeholder="First Name"
+               value={firstName || ''}
+               onChange={handleFormInputChange}
+               fullWidth
+                />
+                <TextField id="standard-full-width"
+                name="lastName"
+                label="Last Name"
+                placeholder="Last Name"
+                value={lastName || ''}
+                onChange={handleFormInputChange}
+                fullWidth
+                />
+          
         </form>
-    </Container>
+    
   );
 }
 

@@ -4,7 +4,7 @@ import AppContext from './AppContext';
 
 import Tab from '../components/Tab';
 import Button from '../components/Button';
-import Form from '../components/Form';
+import View from '../components/View';
 
 const appDefaults = {
   tabs: [],
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <AppContext.Provider value={{ state, setState }}>
         <Tab />
-        
+        <View />
         <Button />
       </AppContext.Provider>
     </div>
