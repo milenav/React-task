@@ -5,6 +5,7 @@ import { TAB_TYPE } from './Tab';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,7 +44,7 @@ function Form() {
   }
 
   return (
-    
+    <Grid container justify="center">
         <form className={classes.root} noValidate autoComplete="off">
           {
             activeTab.type === TAB_TYPE.one.id &&
@@ -72,9 +73,8 @@ function Form() {
                 onChange={handleFormInputChange}
                 fullWidth
                 />
-          
         </form>
-    
+        </Grid>
   );
 }
 
