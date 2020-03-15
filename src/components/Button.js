@@ -9,27 +9,28 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles(theme => ({
   root: {
     "& > *": {
-      margin: theme.spacing(3)
-    }
+      margin: theme.spacing(2), 
+    },
   }
 }));
+
 
 function Buttons() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="sm">
-    <div className={classes.root}>
+    <Container maxWidth="xs" className={classes.root}>
+
       <Button variant="contained" color="primary">
-        Form One
+        Form 1
       </Button>
       <Button variant="contained" color="primary">
-        Form Two
+        Form 2
       </Button>
       <Button variant="contained" color="primary">
-        Form Three
+        Form 3
       </Button>
-    </div>
+
     </Container>
   );
 }

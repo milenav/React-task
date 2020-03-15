@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -10,28 +10,62 @@ const useStyles = makeStyles({
   }
 });
 
+export const TAB_TYPE = {
+  one: {
+    id: 'section-one',
+    label: 'Form 1'
+  },
+  two: {
+    id: 'section-two',
+    label: 'Form 2'
+  },
+  three: {
+    id: 'section-three',
+    label: 'Form 3'
+  },
+};
 
-export default function CenteredTabs() {
+function Tabs() {
+  const appContext = useContext(appContext);
+  
+  const { state, setState } = appContext;
+  const { activeTabIndex, tabs } = state;
+
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (event, activeTabIndex) => {
+    console.log(tabs[activeTabIndex]);
+
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeTabIndex
+      };
+    })
   };
 
   return (
     <Paper className={classes.root}>
       <Tabs
-        value={value}
+        value={activeTabIndex}
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"
-        centered
+        variant="scrollable"
+        scrollButtons="auto"
       >
-        <Tab label="Section One" />
-        <Tab label="Section Two" />
-        <Tab label="Section Three" />
+        {
+          tabs.map((tab) => {
+            const { id, type } = tab;
+
+            return (
+              <Tab key={id} label={type} />
+            );
+          })
+        }
       </Tabs>
     </Paper>
   );
 }
+
+export default Tabs;

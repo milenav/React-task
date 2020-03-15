@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import AppContext from "../app/AppContext";
+import AppContext from '../app/AppContext';
 
-import Tab from "../components/Tab";
-import Button from "../components/Button";
+import Tab from '../components/Tab';
+import Button from '../components/Button';
+import Form from '../components/Form';
 
 const appDefaults = {
   tabs: [],
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <AppContext.Provider value={{ state, setState }}>
         <Tab />
+        <Form />
         <Button />
       </AppContext.Provider>
     </div>
