@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import AppContext from "../app/AppContext";
 
-import AppContext from '../app/AppContext';
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles({
   root: {
@@ -29,18 +29,14 @@ export const TAB_TYPE = {
 };
 
 function AppTabs() {
-  // Use app context
   const appContext = useContext(AppContext);
 
-  // GET DATA FROM CONTEXT (CONTEXT STATE)
   const { state, setState } = appContext;
   const { activeTabIndex, tabs } = state;
 
   const classes = useStyles();
 
   const handleChange = (e, activeTabIndex) => {
-    console.log(tabs[activeTabIndex]);
-
     setState(prevState => {
       return {
         ...prevState,
@@ -59,11 +55,13 @@ function AppTabs() {
         variant="scrollable"
         scrollButtons="auto"
       >
-        {tabs.map(tab => {
-          const { id, type } = tab;
+        {
+          tabs.map(tab => {
+            const { id, type } = tab;
 
-          return <Tab key={id} label={type} />;
-        })}
+            return <Tab key={id} label={type} />;
+          })
+        }
       </Tabs>
     </Paper>
   );

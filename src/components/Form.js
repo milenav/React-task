@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import AppContext from "../app/AppContext";
+import { TAB_TYPE } from './Tab';
 
-import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Form() {
+  const appContext = useContext(appContext);
+  const { setState, state } = appContext;
+
+  const { activeTabIndex, tabs } = state;
+  const activeTab = tabs[activeTabIndex];
+  const { firstName, lastName } = activeTab.form;
+
   const classes = useStyles();
+
+  const handleFormInputChange = (e) => {
+    const { name, value } = e.target;
+    const tabsCopy = tabs.slice();
+
+    tabsCopy[activeTabIndex].form = {
+      ...tabsCopy[activeTabIndex].form,
+      [name]: value
+    };
+
+    setState((prevState) => {
+      return {
+        ...prevState,
+        tabs: tabsCopy
+      }
+    });
+  }
 
   return (
     <Container maxWidth="sm">
